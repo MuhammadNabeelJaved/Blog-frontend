@@ -7,7 +7,7 @@ const BLOG_URL = import.meta.env.VITE_API_BLOGS_BASE_URL || "http://localhost:30
 export const getBlogs = async () => {
     try {
         const response = await axios.get(`${BLOG_URL}`);
-        return response.data.data;
+        return response.data?.data;
     } catch (error) {
         console.log(error);
     }

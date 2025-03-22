@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router";
 import Loader from "./Loader.jsx";
+import { getBlogs } from "../api/blog.api.js";
 
 const BlogCard = () => {
   const [blog, setBlog] = useState([]);
@@ -11,11 +12,11 @@ const BlogCard = () => {
     setLoader(true);
     try {
       setLoader(true);
-      const response = await axios.get(`http://localhost:3000/api/blogs`);
+      const response = await getBlogs();
       // if (!response.ok) {
       //   return <h1 className="m-auto">No Blogs found!</h1>;
       // }
-      setBlog(response.data.data); // Assuming your API returns an object with a 'data' property containing the array of blogs
+      setBlog(response); // Assuming your API returns an object with a 'data' property containing the array of blogs
       setLoader(false);
     } catch (error) {
       console.log(error);

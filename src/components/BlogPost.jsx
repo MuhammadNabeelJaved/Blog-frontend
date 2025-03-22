@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import Loader from "./Loader.jsx";
 import ButtonsLoader from "./ButtonsLoader.jsx";
+import { getBlogs } from "../api/blog.api.js";
+import { postComment } from "../api/comment.api.js";
 
 const BlogPost = () => {
   const [selectedBlog, setSelectedBlog] = useState(null);
@@ -13,17 +15,17 @@ const BlogPost = () => {
   const [commentLoading, setCommentLoading] = useState(false);
   const accessToken = localStorage.getItem("accessToken");
   const navigate = useNavigate();
-  const BLOG_URL =
-    import.meta.env.VITE_API_BLOGS_BASE_URL ||
-    "http://localhost:3000/api/blogs";
-  const COMMENTS_URL =
-    import.meta.env.VITE_API_COMMENTS_BASE_URL ||
-    "http://localhost:3000/api/comments";
+  // const BLOG_URL =
+  //   import.meta.env.VITE_API_BLOGS_BASE_URL ||
+  //   "http://localhost:3000/api/blogs";
+  // const COMMENTS_URL =
+  //   import.meta.env.VITE_API_COMMENTS_BASE_URL ||
+  //   "http://localhost:3000/api/comments";
 
   const getBlog = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${BLOG_URL}`);
+      const response = await getBlogs();
       setLoading(false);
       const blog = response?.data?.data.find((blog) => blog._id === blogId);
       setSelectedBlog(blog);
@@ -52,23 +54,14 @@ const BlogPost = () => {
   const postComment = async () => {
     try {
       setCommentLoading(true);
-      const response = await axios.post(
-        `${COMMENTS_URL}/post-comment`,
-        {
-          comment: newComment,
-          blogId: blogId,
-        },
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
+      const response = await postComment({
+        blogId,
+        comment: newComment,
+      });
       setCommentLoading(false);
 
       // Assuming the response contains the newly created comment
-      const newCommentData = response.data; // Adjust this based on your API response structure
+      const newCommentData = response; // Adjust this based on your API response structure
 
       // Update the comments state with the new comment at the top
       setComments((prevComments) =>
@@ -87,7 +80,9 @@ const BlogPost = () => {
   };
 
   const sortComments = (commentsArray) => {
-    return commentsArray.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    return commentsArray.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
   };
 
   if (!selectedBlog) {
