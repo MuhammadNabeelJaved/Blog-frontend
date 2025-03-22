@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { currentUser } from "../api/user.api";
 
 const UserDetails = ({ userId }) => {
   const [user, setUser] = useState(null);
@@ -7,10 +8,8 @@ const UserDetails = ({ userId }) => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/users/${userId}`
-        );
-        setUser(response.data.data); // Adjust based on your API response structure
+        const response = await currentUser(userId);
+        setUser(response.data); // Adjust based on your API response structure
       } catch (error) {
         console.error("Error fetching user details:", error);
       }

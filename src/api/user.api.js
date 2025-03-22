@@ -10,3 +10,7 @@ export const currentUser = async (id) => {
     return response.data;
 }
 
+export const registerUser = async (data) => {
+    const response = await axios.post(`${USER_URL}/register`, data);
+    return response.data;
+}

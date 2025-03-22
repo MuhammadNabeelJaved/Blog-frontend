@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import ButtonsLoader from "./ButtonsLoader.jsx";
+import { registerUser } from "../api/user.api.js";
 
 export default function Signup() {
   const [fileName, setFileName] = useState("");
@@ -38,18 +39,11 @@ export default function Signup() {
 
     try {
       setIsLoading(true); // Set loading to true before the API call
-      const response = await axios.post(
-        "http://localhost:3000/api/users/register",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Set the content type for file upload
-          },
-        }
-      );
+      const response = await registerUser(formData); // Call the registerUser function
+      console.log(response);
 
       // Redirect to the dashboard or another page after successful registration
-        navigate(`/user/dashboard/${response.data?.data?._id}`);
+      navigate(`/user/dashboard/${response.data?._id}`);
     } catch (error) {
       console.error(error);
     } finally {
