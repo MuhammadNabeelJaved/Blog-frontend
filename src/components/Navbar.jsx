@@ -14,6 +14,7 @@ import { NavLink } from "react-router"; // Fixed import
 import axios from "axios";
 import { useParams, useNavigate } from "react-router"; // Fixed import
 import { useAuth } from "../authentication/Auth.jsx";
+import { currentUser } from "../api/user.api.js";
 
 const route = "http://localhost:3000"; // Added missing route variable
 
@@ -45,7 +46,7 @@ function Navbar() {
     const getCurrentUser = async () => {
       try {
         if (isLoggedIn && params.id) {
-          const response = await axios.get(`${route}/api/users/${params.id}`);
+          const response = await currentUser(params.id);
 
           if (response.status === 200) {
             setCurrentUser(response.data);
