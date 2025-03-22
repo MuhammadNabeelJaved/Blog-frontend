@@ -19,7 +19,7 @@ export const createBlog = async (blogData) => {
             `${BLOG_URL}/create-blog`,
             blogData
         );
-        return response;
+        return response.data;
     } catch (error) {
         console.log(error);
     }

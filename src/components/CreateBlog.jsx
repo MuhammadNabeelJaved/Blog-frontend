@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router"; // Import useNavigate for redirection
 import ButtonsLoader from "./ButtonsLoader.jsx";
+import { createBlog } from "../api/blog.api.js";
 
 const CreateBlog = () => {
   const [loading, setLoading] = useState(false); // State to manage loading
@@ -33,21 +34,12 @@ const CreateBlog = () => {
     setErrorMessage(""); // Clear previous error messages
 
     try {
-      const response = await axios.post(
-        `http://localhost:3000/api/blogs/create-blog`, // URL for the POST request
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data", // Set the content type for file uploads
-            Authorization: `Bearer ${accessToken}`, // Include the token in the headers
-          },
-        }
-      );
+      const response = await createBlog(formData, accessToken); // Call the createBlog function
 
-      console.log(response.data);
+      console.log(response);
       setSuccessMessage("Blog published successfully!"); // Set success message
       setTimeout(() => {
-        navigate(`/user/dashboard/${response.data?.data?.user}`); // Redirect to dashboard after 2 seconds
+        navigate(`/user/dashboard/${response.data?.user}`); // Redirect to dashboard after 2 seconds
       }, 2000);
     } catch (error) {
       console.log(error);
