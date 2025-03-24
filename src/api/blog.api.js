@@ -3,7 +3,6 @@ import axios from "axios";
 
 const BLOG_URL = import.meta.env.VITE_API_BLOGS_BASE_URL || "http://localhost:3000/api/blogs";
 
-console.log("Blog ka Api Base URL: ", import.meta.env.VITE_API_BLOGS_BASE_URL);
 
 
 export const getBlogs = async () => {
@@ -34,7 +33,6 @@ export const currentUserBlogs = async () => {
             `${BLOG_URL}/current-user-blog-post`
         );
 
-        console.log("Current user k blogs ka response", response.data.data);
         return response.data.data;
     } catch (error) {
         console.log(error);
