@@ -17,6 +17,8 @@ const DashboardHome = () => {
   const [totalBlogsAndComments, setTotalBlogsAndComments] = useState([]);
   const [loader, setLoader] = useState(true); // Set loader to true initially
 
+  console.log(totalBlogsAndComments);
+
   const getCurrentUserBlogs = async () => {
     setLoader(true);
     try {
@@ -106,7 +108,7 @@ const DashboardHome = () => {
               Total Blogs
             </p>
             <p className="text-xl font-semibold text-gray-800 dark:text-white">
-              {totalBlogsAndComments.userBlogs?.length}
+              {totalBlogsAndComments?.userBlogs?.length}
             </p>
           </div>
         </div>
@@ -132,7 +134,7 @@ const DashboardHome = () => {
           <div>
             <p className="text-sm text-gray-500 dark:text-gray-400">Comments</p>
             <p className="text-xl font-semibold text-gray-800 dark:text-white">
-              {totalBlogsAndComments.totalBlogsComments}
+              {/* {totalBlogsAndComments.totalBlogsComments} */}
             </p>
           </div>
         </div>

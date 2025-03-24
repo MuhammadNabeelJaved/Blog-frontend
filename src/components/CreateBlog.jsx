@@ -39,7 +39,7 @@ const CreateBlog = () => {
       console.log(response);
       setSuccessMessage("Blog published successfully!"); // Set success message
       setTimeout(() => {
-        navigate(`/user/dashboard/${response.data?.user}`); // Redirect to dashboard after 2 seconds
+        navigate(`/dashboard/user/${response.data?.user}`); // Redirect to dashboard after 2 seconds
       }, 2000);
     } catch (error) {
       console.log(error);

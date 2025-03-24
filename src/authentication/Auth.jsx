@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }) => {
     return () => {
       axios.interceptors.response.eject(interceptor);
     };
-  }, []);
+  });
 
   // Check if the user is logged in when the component mounts
   useEffect(() => {

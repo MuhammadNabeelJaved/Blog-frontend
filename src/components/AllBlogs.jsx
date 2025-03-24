@@ -8,15 +8,16 @@ const AllBlogs = () => {
   const [blogs, setBlogs] = useState([]);
   const [loader, setLoader] = useState(true); // Set loader to true initially
 
-  const blog = blogs.map((blog) => {
-    return blog;
-  });
+  // const blog = blogs.map((blog) => {
+  //   return blog;
+  // });
 
   const getCurrentUserBlogs = async () => {
     setLoader(true);
     try {
       const response = await currentUserBlogs();
-      setBlogs(response.userBlogs); // Assuming your API returns an object with a 'data' property containing the array of blogs
+      console.log(" response:",response);
+      setBlogs(response?.userBlogs); // Assuming your API returns an object with a 'data' property containing the array of blogs
     } catch (error) {
       console.log(error);
     } finally {
@@ -54,7 +55,7 @@ const AllBlogs = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-6">
-            {blogs.map((blog) => (
+            {/* {blogs.map((blog) => (
               <div
                 key={blog._id}
                 className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden"
@@ -117,7 +118,7 @@ const AllBlogs = () => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       )}
