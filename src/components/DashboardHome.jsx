@@ -17,8 +17,6 @@ const DashboardHome = () => {
   const [totalBlogsAndComments, setTotalBlogsAndComments] = useState([]);
   const [loader, setLoader] = useState(true); // Set loader to true initially
 
-  console.log(totalBlogsAndComments);
-
   const getCurrentUserBlogs = async () => {
     setLoader(true);
     try {

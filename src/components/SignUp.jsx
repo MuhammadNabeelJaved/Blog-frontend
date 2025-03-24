@@ -40,7 +40,6 @@ export default function Signup() {
     try {
       setIsLoading(true); // Set loading to true before the API call
       const response = await registerUser(formData); // Call the registerUser function
-      console.log(response);
 
       // Redirect to the dashboard or another page after successful registration
       navigate(`/user/dashboard/${response.data?._id}`);

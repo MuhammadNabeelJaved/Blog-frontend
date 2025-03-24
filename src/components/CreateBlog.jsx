@@ -35,8 +35,6 @@ const CreateBlog = () => {
 
     try {
       const response = await createBlog(formData, accessToken); // Call the createBlog function
-
-      console.log(response);
       setSuccessMessage("Blog published successfully!"); // Set success message
       setTimeout(() => {
         navigate(`/dashboard/user/${response.data?.user}`); // Redirect to dashboard after 2 seconds

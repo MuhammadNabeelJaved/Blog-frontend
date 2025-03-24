@@ -16,7 +16,6 @@ const AllBlogs = () => {
     setLoader(true);
     try {
       const response = await currentUserBlogs();
-      console.log(" response:",response);
       setBlogs(response?.userBlogs); // Assuming your API returns an object with a 'data' property containing the array of blogs
     } catch (error) {
       console.log(error);
@@ -55,7 +54,7 @@ const AllBlogs = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-6">
-            {/* {blogs.map((blog) => (
+            {blogs.map((blog) => (
               <div
                 key={blog._id}
                 className="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden"
@@ -118,7 +117,7 @@ const AllBlogs = () => {
                   </div>
                 </div>
               </div>
-            ))} */}
+            ))}
           </div>
         </div>
       )}
