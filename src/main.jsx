@@ -20,6 +20,7 @@ const ProtectedRoute = React.lazy(() => import("./authentication/ProtectedRoute.
 
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router";
 import { AuthProvider } from "./authentication/Auth.jsx";
+import OTPEntry from "./components/OtpVerification.jsx";
 
 // Error Boundary Component
 function ErrorBoundary() {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       { 
         path: "blog/:blogId", 
         element: <BlogPost /> 
+      },
+      { 
+        path: "otp-verification", 
+        element: <OTPEntry /> 
       },
       // Protected routes
       {

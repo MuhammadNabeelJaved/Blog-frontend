@@ -52,7 +52,7 @@ const UserDashboard = () => {
   // };
 
   return (
-    <div className="flex bg-gray-100 justify-space-between dark:bg-gray-900">
+    <div className="flex bg-gray-100 dark:bg-gray-900">
       {/* Mobile menu button */}
       <button
         data-drawer-target="default-sidebar"
